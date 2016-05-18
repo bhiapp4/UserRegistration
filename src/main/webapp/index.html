@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html ng-app="registrationApp">
+<head>
+<meta charset="UTF-8">
+<title>User Registration</title>
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
+<style>
+    html, body, input, select, textarea
+    {
+        font-size: 1.05em !important;
+    }
+</style>
+
+<!-- load angular via CDN -->
+<script src="//code.angularjs.org/1.4.7/angular.min.js"></script>
+<script src="//code.angularjs.org/1.4.7/angular-route.min.js"></script>
+<script src="//code.angularjs.org/1.4.7/angular-resource.min.js"></script>
+<script src="resources/js/app.js"></script>
+<script src="resources/js/services.js"></script>
+<script src="resources/js/controllers.js"></script>
+
+</head>
+<body>
+	<div class="container" ng-controller="registrationController as regCntrl">
+		<h2>User Form</h2>
+		<div class="alert alert-danger" ng-if="error != null">
+  			<strong>{{error}}</strong> 
+		</div>
+		<form role="form" name="userForm" id="userForm" novalidate ng-submit="userForm.$valid && createUser()">
+			<div class="form-group">
+				<label for="firstName">First Name</label> <input type="text"
+					id="firstName" name="firstName" required
+					ng-model="user.firstName" class="form-control">
+				<div
+					ng-show="userForm.$submitted || userForm.firstName.$touched">
+					<div ng-show="userForm.firstName.$error.required"
+						class="alert alert-danger">Firstname is required</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="lastName">Last Name</label> <input type="text"
+					id="lastName" name="lastName" required
+					ng-model="user.lastName" class="form-control">
+				<div
+					ng-show="userForm.$submitted || userForm.lastName.$touched">
+					<div ng-show="userForm.lastName.$error.required"
+						class="alert alert-danger">Lastname is required</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="age">Age</label> <input type="text"
+					id="age" name="age" required
+					ng-model="user.age" class="form-control">
+				<div
+					ng-show="userForm.$submitted || userForm.age.$touched">
+					<div ng-show="userForm.age.$error.required"
+						class="alert alert-danger">Age is required</div>
+				</div>
+			</div>
+	
+			<button type="submit" class="btn btn-primary">Save</button><br/><br/>
+			
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<table class="table table-striped">
+					   <caption>Registered Users</caption>	
+					   <tr>
+					      <th>FirstName</th>
+					      <th>LastName</th>
+					      <th>Age</th>
+					      <th>Action</th>
+					   </tr>
+					   
+					   <tr ng-repeat = "user in users">
+					      <td>{{ user.firstName }}</td>
+					      <td>{{ user.lastName }}</td>
+					      <td>{{ user.age }}</td>
+					      <td>
+					      	<button type="button" class="btn btn-primary" ng-click="setupFormForUpdate(user)">Edit</button>
+					      	<button type="button" class="btn btn-primary" ng-click="deleteUser(user)">Delete</button>
+					      </td>
+					   </tr>
+					</table>
+				</div>
+			</div>
+		</form>
+	</div>
+
+</body>
+</html>
