@@ -20,16 +20,15 @@ registrationApp.service('registrationService', function($resource){
 		return User.update(userPassed).$promise.then(function(user) {
 	    	return user;
 	    },function(error) {
-            alert("An error occured");
-            return userPassed;
-	    });
+	    	return error;
+      });
 	}
 	
 	this.getUsers = function(){
 		return User.query().$promise.then(function(users) {
 	    	return users;
 	    },function(error) {
-            alert("An error occured");
+           return error;
 	    });
 	}
 
@@ -37,7 +36,7 @@ registrationApp.service('registrationService', function($resource){
 		return User.remove({id:userPassed.id}).$promise.then(function(data) {
 	    	return data;
 	    },function(error) {
-            alert("An error occured");
+            return error;
 	    });
 	}
 
