@@ -1,5 +1,5 @@
 # UserRegistration
-Crud operations(Uses sqllite database)
+CRUD(Create/Read/Update/Delete) operations(Uses sqllite database)
 
 Import the project in Eclipse
 Install Jetty plugin
